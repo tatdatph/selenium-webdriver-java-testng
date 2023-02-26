@@ -4,10 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Topic_06_Run_Browser {
@@ -60,7 +59,7 @@ public class Topic_06_Run_Browser {
 	
 
 	@AfterClass
-	//public void afterClass() {
-	//	driver.quit();
-	//}
+	public void afterClass() {
+	driver.quit();
+	}
 }
