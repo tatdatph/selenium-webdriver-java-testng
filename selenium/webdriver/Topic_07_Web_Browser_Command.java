@@ -92,8 +92,6 @@ public class Topic_07_Web_Browser_Command {
 			driver.switchTo().frame(1);
 			//Switch vào Alert =====> *
 			driver.switchTo().alert();	
-	
-	
 	}
 	
 	
