@@ -63,11 +63,7 @@ public class Topic_26_Custom_Dropdown {
 			}
 		}
 		
-		for (WebElement tempElement : allItems) {
-			
-		}
-		
-		
+	
 		
 	}
 
