@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,7 +19,6 @@ public class Topic_26_Custom_Dropdown {
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
 	WebDriverWait explicitWait;
-	
 
 	@BeforeClass
 	public void beforeClass() {
@@ -35,43 +35,55 @@ public class Topic_26_Custom_Dropdown {
 	}
 
 	@Test
-	public void TC_01_() {
+	public void TC_01_Jquery() {
 		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
-		
-		//Clcik theo manual
-		driver.findElement(By.cssSelector("span#number-button")).click();
-		
-		//Cho cac item load ra het, trong 30s
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("ul#number-menu>li>div")));
-		
-		//Tim het cac element
-		driver.findElements(By.cssSelector("ul#number-menu>li>div"));
-		
-		//Cho vao list
-		List<WebElement> allItems = driver.findElements(By.cssSelector("ul#number-menu>li>div"));
-		
-		//Duyet qua tung item
-		for (int i = 0; i < allItems.size(); i++) {
-			//Get text cua tung item
-			String itemText = allItems.get(i).getText();
-			//Click chon
-			if (itemText.equals("5")) {
-				allItems.get(i).click();
-			//Thoat
-				break;
-								
-			}
-		}
-		
-	
-		
+		selectItemDropdown("//span[@id='number-button']", "//ul[@id='number-menu']/li/div", "2");
 	}
 
-	@Test 
+	@Test
 	public void TC_02_() {
 
 	}
 
+	public void selectItemDropdown(String xpathParent, String xpathChild, String expectedText) {
+
+		// Click theo manual
+		driver.findElement(By.xpath(xpathParent)).click();
+		sleep(1);
+
+		// Cho cac item load ra het, trong 30s
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xpathChild)));
+		sleep(1);
+		// Tim het cac element
+		driver.findElements(By.xpath(xpathChild));
+
+		// Cho vao list
+		List<WebElement> allItems = driver.findElements(By.xpath(xpathChild));
+		sleep(1);
+
+		// Duyet qua tung item
+		for (int i = 0; i < allItems.size(); i++) {
+			// Get text cua tung item
+			String itemText = allItems.get(i).getText();
+			// Click chon
+			if (itemText.equals(expectedText)) {
+				// Scroll toi element
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", allItems.get(i));
+				allItems.get(i).click();
+				// Thoat
+				break;
+			}
+		}
+	}
+
+	private void sleep(long timeout) {
+		try {
+			Thread.sleep(timeout * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@AfterClass
 	public void afterClass() {
