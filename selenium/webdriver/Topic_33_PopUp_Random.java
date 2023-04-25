@@ -8,7 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_01_Template {
+public class Topic_33_PopUp_Random {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
@@ -30,24 +30,9 @@ public class Topic_01_Template {
 	public void TC_01_() {
 	}
 
-	@Test
-	public void TC_03_() {
+	@Test 
+	public void TC_02_() {
 
-	}
-
-	@Test
-	public void TC_04_() {
-
-	}
-
-	@Test
-	public void TC_05_() {
-
-	}
-
-	@Test
-	public void TC_06_() {
-		sleep(1);
 	}
 
 	private void sleep(long timeout) {
